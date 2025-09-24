@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+body {
+    color: black; /* ← this makes all text white */
+    background-color: #FAE3CD;
+  }
