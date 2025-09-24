@@ -62,9 +62,16 @@ onMounted(async () => {
 
 <template>
   <div class="bg-[#fae3cd] min-h-screen  mx-auto w-full  px-6  pt-[70px]">
-    <h1 class="text-3xl font-bold mb-6">
-      Recipes by {{ recipes[0]?.user?.full_name || 'User' }}
-    </h1>
+    <div class="mb-6">
+        <NuxtLink to="/" class="flex items-center text-gray-700 hover:text-orange-500 mb-2">
+          <IconChevronLeft class="mr-1" />
+          <span class="text-sm font-medium">Back</span>
+        </NuxtLink>
+        <h1 class="text-3xl font-bold mb-6">
+        Recipes by {{ recipes[0]?.user?.full_name || 'User' }}
+        </h1>
+      </div>
+    
 
     <!-- Loading & Error states -->
     <div v-if="loading" class="text-center py-10">

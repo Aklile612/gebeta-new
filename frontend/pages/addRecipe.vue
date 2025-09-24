@@ -217,7 +217,7 @@ const onSubmit = handleSubmit(
       console.log('Using token:', tokenToUse)
 
       // Make API call with authentication
-      const response = await $fetch('http://localhost:8081/add_recipes', {
+      const response = await $fetch('https://gebeta-new.onrender.com/add_recipes', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${tokenToUse}`

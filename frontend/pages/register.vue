@@ -26,7 +26,7 @@ const [password, passwordAttrs] = defineField('password')
 // Form submission handler
 const onSubmit = handleSubmit(async (values) => {
   try {
-    const response = await $fetch('http://localhost:8081/register', {
+    const response = await $fetch('https://gebeta-new.onrender.com/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

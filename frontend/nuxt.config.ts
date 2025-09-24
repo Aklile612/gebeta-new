@@ -14,9 +14,6 @@ export default defineNuxtConfig({
   lucide: {
     namePrefix: 'Icon'
   },
-  routeRules: {
-    '/': { redirect: '/register' },
-  },
   compatibilityDate: '2025-07-21',
   devtools: { enabled: true },
   ssr: true,

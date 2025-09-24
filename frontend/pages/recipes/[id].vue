@@ -262,7 +262,7 @@ const onSubmit = handleSubmit(async (values) => {
     formData.append('comment', values.comment)
 
 
-    const response = await $fetch(`http://localhost:8081/comment_recipes/${recipeId}`, {
+    const response = await $fetch(`https://gebeta-new.onrender.com/comment_recipes/${recipeId}`, {
       method: 'POST',
       headers: {
         
