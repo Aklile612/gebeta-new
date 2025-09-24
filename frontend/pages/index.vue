@@ -4,7 +4,7 @@ import { Search,FeaturedRecipe,AvatarUser } from '#components';
 
 
 <template>
-  <div class="pt-[70px]">
+  <div class="pt-[70px] scroll-smooth">
 
     <!-- // hero section -->
     <div  class="hero min-h-screen" style="background-image: url('/image/hero2.png');">
@@ -15,7 +15,7 @@ import { Search,FeaturedRecipe,AvatarUser } from '#components';
             <p class="mb-5">
               Browse,cook and share amazing meals from everywhere
             </p>
-            <NuxtLink to="/recipes" class="btn btn-primary bg-orange-500 border-orange-400">Get Started</NuxtLink>
+            <a href="#featured-recipes" class="btn btn-primary bg-orange-500 border-orange-400">Get Started</a>
           </div>
         </div>
     </div>
@@ -24,7 +24,7 @@ import { Search,FeaturedRecipe,AvatarUser } from '#components';
     <div><search/></div>
 
     <!-- featured recipes -->
-    <div><FeaturedRecipe/></div>
+    <div id="featured-recipes"><FeaturedRecipe/></div>
 
     <!-- user avatar  -->
 
