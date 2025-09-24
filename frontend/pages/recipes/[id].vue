@@ -59,7 +59,7 @@
             <!-- Action Buttons -->
             <div class="mt-6 space-y-3">
               <button 
-                class="w-full bg-green-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-600 transition"
+                class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-medium  transition"
               >
                 Start Cooking
               </button>

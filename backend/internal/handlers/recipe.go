@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"net/http"
 	"strconv"
@@ -62,7 +63,10 @@ if err != nil {
 		}
 		defer file.Close()
 
+		fmt.Println("===> Starting upload at:", time.Now())
 		url, err := media.UploadImage(file, fileHeader)
+		fmt.Println("===> Finished upload at:", time.Now())
+
 
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to upload image", "detail": err.Error()})

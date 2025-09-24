@@ -1,12 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRuntimeConfig } from '#imports'
+import { useRouter } from 'vue-router'
+
 
 const loading = ref(true)
 const errorMessage = ref('')
 const users = ref([])
 const config = useRuntimeConfig()
-
+const router = useRouter()
 const GRAPHQL_URL = config.public?.graphqlUrl || 'https://gebeta-app.hasura.app/v1/graphql'
 const HASURA_ADMIN_SECRET = '5zghjagw4B9BsAy7grRxTOxrtrL6o5ivzSSPuXpwW4z1AXyS5hN3xo06T4HEBllw'
 
@@ -51,37 +53,44 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="pt-[70px] pb-[20px] min-h-screen" style="background-color:#FAE3CD;">
-    <div class="max-w-[1200px] mx-auto px-4">
-      <div class="text-center mb-6">
-        <h1 class="text-3xl font-bold">All Recipe Creators</h1>
-        <p class="text-muted">Browse contributors from our community</p>
-      </div>
+  <div class="bg-white w-full min-h-screen">
+    <div class="mx-[30vw] pt-[70px]">
+      <h1 class="mb-5 text-4xl ml-[7vw] font-serif font-bold">All Recipe Creators</h1>
+    </div>
 
-      <div v-if="loading && users.length === 0" class="text-center text-orange-400 text-2xl py-10">
-        Loading creators…
-      </div>
-      <div v-else-if="errorMessage && users.length === 0" class="text-center text-red-500 py-10">
-        {{ errorMessage }}
-      </div>
+    <!-- Loading & Error states -->
+    <div v-if="loading && users.length === 0" class="text-center text-orange-400 text-2xl py-10">
+      <IconLoaderCircle class="w-16 h-16 mx-auto mb-4 animate-spin" />
+    </div>
+    <div v-else-if="errorMessage && users.length === 0" class="text-center text-red-500 py-10">
+      {{ errorMessage }}
+    </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div 
-          v-for="user in users" 
-          :key="user.id" 
-          class="card bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+    <!-- Cards container -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9 mt-8">
+        <div
+          v-for="user in users"
+          :key="user.id"
+          class="w-[240px] p-4 bg-[#fae3cd] hover:bg-[#f7d5b6] transition-all rounded-xl flex flex-col items-center shadow-sm"
         >
-          <div class="card-body p-4 text-center">
-            <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold text-xl">
-              {{ user.full_name ? user.full_name.charAt(0).toUpperCase() : 'U' }}
-            </div>
-            
-            <h2 class="card-title justify-center text-sm font-bold">{{ user.full_name || 'Unknown User' }}</h2>
-            <p class="text-xs text-muted">
-              {{ user.recipes_aggregate?.aggregate?.count || 0 }} Recipes
+          <!-- Icon in circle -->
+          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-slate-300 hover:scale-110 transition-all">
+            <IconUsers class="text-orange-500 w-8 h-8" />
+          </div>
+
+          <!-- User info -->
+          <div class="mt-4 text-center">
+            <p class="font-bold text-sm text-gray-800">{{ user.full_name || 'Unknown User' }}</p>
+            <p class="text-xs text-gray-600 mt-1">
+              {{ user.recipes_aggregate?.aggregate?.count || 0 }} Recipes Submitted
             </p>
-            
-            <button class="mt-2 text-sm bg-orange-300 hover:bg-orange-500 text-gray-800 hover:text-white font-medium py-1 px-3 rounded-md transition-all">
+
+            <!-- View Button -->
+            <button
+              @click="$router.push(`/creators/${user.id}`)"
+              class="mt-3 text-sm bg-orange-300 hover:bg-orange-500 text-gray-800 hover:text-white font-medium py-1 px-3 rounded-md transition-all duration-200"
+            >
               View Recipes
             </button>
           </div>
@@ -90,3 +99,4 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+

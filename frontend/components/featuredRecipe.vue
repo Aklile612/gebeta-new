@@ -133,7 +133,7 @@ const goToRecipe = (id) => router.push(`/recipes/${id}`)
     </div>
 
     <div v-if="loading && recipes.length === 0" class="text-center text-orange-400 text-2xl py-10">
-      Loading recipes…
+      <IconLoaderCircle class="w-10 h-10 mx-auto mb-4 animate-spin" />
     </div>
     <div v-else-if="errorMessage && recipes.length === 0" class="text-center text-red-500 py-10">
       {{ errorMessage }}

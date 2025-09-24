@@ -83,7 +83,7 @@ const goToRecipe = (id) => {
       </div>
 
       <!-- Loading / Error states -->
-      <div v-if="loading && recipes.length === 0" class="text-center text-orange-400 text-2xl  py-10 ">Loading recipes…</div>
+      <div v-if="loading && recipes.length === 0" class="text-center text-orange-400 text-2xl  py-10 "><IconLoaderCircle class="w-16 h-16 mx-auto mb-4 animate-spin" /></div>
       <div v-else-if="errorMessage && recipes.length === 0" class="text-center text-red-500 py-10">{{ errorMessage }}</div>
 
       <!-- Smaller Cards Grid -->
